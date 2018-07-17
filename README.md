@@ -126,7 +126,7 @@
 	
 2.安装Django框架
 
-	(demo) -bash-4.1# pip instal -r  requirement.txt
+	(demo) -bash-4.1# pip install -r  requirement.txt
 
 
 3.数据库配置:   
