@@ -1,0 +1,35 @@
+#!/bin/bash
+# named a network name service.
+# chkconfig: 345 35 75
+# description: a name server
+
+if [ `id -u` -ne 0 ]
+then
+echo "ERROR:For bind to port 53,must run as root."
+exit 1
+fi
+case "$1" in
+start)
+/usr/local/bind/sbin/named -c /usr/local/bind/etc/named.conf -u root 
+echo "BIND9-named server started"
+;;
+stop)
+kill `cat /usr/local/bind/var/named.pid` && echo . && echo 'BIND9 server stopped'
+;;
+restart)
+echo .
+echo "Restart BIND9 server"
+$0 stop
+sleep 10
+$0 start
+;;
+reload)
+/usr/local/bind/sbin/rndc reload
+;;
+status)
+/usr/local/bind/sbin/rndc status
+;;
+*)
+echo "$0 start | stop | restart |reload |status"
+;;
+esac
