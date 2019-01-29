@@ -3,9 +3,9 @@
 <h1 align = "center">Bind-DLZ + Django   + Mysql  DNS管理平台 </h1>
 
 系统环境:CentOS 6.5 X64
-```
-Mysql安装 : https://github.com/station19/MyDockerOS/blob/master/Config/DNS/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91DNS-Web%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0.md
-```
+
+##### Mysql安装 : https://github.com/station19/MyDockerOS/blob/master/Config/DNS/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91DNS-Web%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0.md
+
 软件版本: 
 
       bind-9.9.5.tar.gz  
