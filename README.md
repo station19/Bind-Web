@@ -129,11 +129,12 @@
 	cd Bind-Web
 	
 2.安装Django框架
+```
 	yum install python-devel
 	wget https://bootstrap.pypa.io/get-pip.py
 	python get-pip.py
 	pip install -r  requirement.txt
-
+```
 
 3.数据库配置:   
 
