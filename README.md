@@ -29,8 +29,10 @@
 	 
      #官网说明强调编译关闭多线程，即--enable-threads=no
 	 
-     make
-	 make install           #源码编译安装完成
+     	  make
+	  make install           #源码编译安装完成
+	  # 如果提示 not found  libmysqlclient,执行下面命令
+ 	  # ln -s /usr/lib64/mysql/libmysqlclient.so /usr/lib/libmysqlclient.so
 
  
 2.环境变量配置
