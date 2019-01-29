@@ -3,7 +3,7 @@
 <h1 align = "center">Bind-DLZ + Django   + Mysql  DNS管理平台 </h1>
 
 系统环境:CentOS 6.5 X64
-
+Mysql安装 : https://github.com/station19/MyDockerOS/blob/master/Config/DNS/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91DNS-Web%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0.md
 软件版本: 
 
       bind-9.9.5.tar.gz  
@@ -62,10 +62,10 @@
        
 		options {
 				directory       "/usr/local/bind/";
-				version         "bind-9.9.9";
+				version         "bind-9.9.5";
 				listen-on port 53 { any; };
 				allow-query-cache { any; };
-				listen-on-v6 port 53 { ::1; };
+				listen-on-v6 port 53 { any; };
 				allow-query     { any; };
 				recursion yes;    
 				dnssec-enable yes;
@@ -95,7 +95,7 @@
 		 
 				dlz "Mysql zone" {
 						database        "mysql
-						{host=127.0.0.1 dbname=devops1 ssl=false port=3306 user=root pass=123456}
+						{host=localhost dbname=dns ssl=false port=3306 user=root pass=123456}
 						{select zone from dns_records where zone='$zone$'}
 						{select ttl, type, mx_priority, case when lower(type)='txt' then concat('\"', data, '\"') when lower(type) = 'soa' then concat_ws(' ', data, resp_person, serial, refresh, retry, expire, minimum) else data end from dns_records where zone = '$zone$' and host = '$record$'}"; 
 				};
@@ -110,8 +110,8 @@
 
 5.生成 name.ca文件
 
-	(demo) -bash-4.1# cd /usr/local/bind/etc/
-	(demo) -bash-4.1# dig -t NS .  >named.ca
+	cd /usr/local/bind/etc/
+	dig -t NS .  >named.ca
 
 
 
@@ -193,7 +193,7 @@ http://ip:80  访问WEB 界面 登录账户就是创建的管理用户
 
 1.启动  Bind 服务并设置开机启动脚本
 
-    (demo) -bash-4.1# /usr/local/bind/sbin/named
+    	/usr/local/bind/sbin/named
 
 2.监控系统日志：
 
@@ -211,13 +211,13 @@ http://ip:80  访问WEB 界面 登录账户就是创建的管理用户
 4.设置 Bind  开机启动脚本
 
 	bind 本文档会附带，传到服务器  /etc/init.d/ 目录
-	(demo) -bash-4.1# chmod  755 /etc/init.d/bind 
-	(demo) -bash-4.1# #mkdir  /var/run/named/ && chown  named:named -R /var/run/named 
+	chmod  755 /etc/init.d/bind 
+	mkdir  /var/run/named/ && chown  named:named -R /var/run/named 
 	杀掉 named  服务，改用脚本启动
 
-	(demo) -bash-4.1# pkill  named
-	(demo) -bash-4.1# /etc/init.d/bind  start            #监控日志，查看启动状态
-	(demo) -bash-4.1# chkconfig  --add bind            #加入开机启动
+	pkill  named
+	/etc/init.d/bind  start            #监控日志，查看启动状态
+	chkconfig  --add bind            #加入开机启动
  tail -f /var/log/messages
 
 ![](https://github.com/1032231418/doc/blob/master/images/5.png?raw=true)
