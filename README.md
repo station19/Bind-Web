@@ -176,7 +176,7 @@
 		
 				 python manage.py  runserver 0.0.0.0:80
 
-	5.1) supervisor接管进程
+	5.1) 或者用supervisor接管进程 运行项目
 ```
 	pip install supervisor
 	mkdir /etc/supervisor/
