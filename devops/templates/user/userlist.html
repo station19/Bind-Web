@@ -44,6 +44,7 @@
             <td>
                 <div class="btn-group">
                     <div class="btn-group">
+                        <!--
                         <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                             修改
                             <span class="caret"></span>
@@ -54,7 +55,8 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                             {% if perms.auth.change_group %}
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="" data='{"uid": "{{ user_obj.id }}", "username": "{{ user_obj.username }}" }' class="user_to_group">添加到指定组</a></li>
-                            {% endif %}
+                             -->
+                         {% endif %}
                         </ul>
                     </div>
                     {% if perms.auth.change_user %}
