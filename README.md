@@ -127,7 +127,8 @@
 	
 	git clone https://github.com/station19/Bind-Web.git
 	cd Bind-Web
-	
+	find . -name "*.py" -exec chmod 755 {} \;
+
 2.安装Django框架
 ```
 	yum install python-devel
@@ -157,7 +158,7 @@
 
 				 python  manage.py makemigrations
 				 
-
+	
 ![image](https://github.com/1032231418/PYVM/blob/master/bind-web-images/makemigrations.png)	
 				 
 				 python  manage.py migrate		
@@ -175,6 +176,33 @@
 		
 				 python manage.py  runserver 0.0.0.0:80
 
+	5.1) supervisor接管进程
+```
+	pip install supervisor
+	mkdir /etc/supervisor/
+	echo_supervisord_conf > /etc/supervisor/supervisord.conf
+
+cat>>/etc/supervisor/supervisord.conf<<EOF
+[program:dns-manage]
+command=python manage.py  runserver 0.0.0.0:80
+directory=/root/Bind-Web-Django/devops
+user=root
+autorestart=true
+;startsecs = 1
+stdout_logfile=/var/log/dns-manage.log
+
+
+[program:bind]
+command=/usr/local/bind/sbin/named
+user=root
+autorestart=true
+;startsecs = 1
+stdout_logfile=/var/log/bind.log
+EOF
+
+
+supervisord -c /etc/supervisor/supervisord.conf
+```
 
 
 http://ip:80  访问WEB 界面 登录账户就是创建的管理用户
