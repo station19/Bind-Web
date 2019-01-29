@@ -121,32 +121,36 @@
 
 1.克隆管理平台
 
-	(demo) -bash-4.1# git  clone  https://github.com/1032231418/Bind-Web.git  #git  克隆下来
-	(demo) -bash-4.1# cd Bind-Web
+	#git  clone  https://github.com/1032231418/Bind-Web.git  #git  克隆下来
+	
+	git clone https://github.com/station19/Bind-Web.git
+	cd Bind-Web
 	
 2.安装Django框架
-
-	(demo) -bash-4.1# pip install -r  requirement.txt
+	yum install python-devel
+	wget https://bootstrap.pypa.io/get-pip.py
+	python get-pip.py
+	pip install -r  requirement.txt
 
 
 3.数据库配置:   
 
-        1.)   CREATE DATABASE  devops1   CHARACTER SET utf8 COLLATE utf8_general_ci;  #创建数据库
+        1.) CREATE DATABASE  dns   CHARACTER SET utf8 COLLATE utf8_general_ci;  #创建数据库
 		
-        2.)配置文件devops/settings 里连接数据库
+        2.) 配置文件devops/settings 里连接数据库
 		
 				DATABASES = {
 					'default': {
 						'ENGINE': 'django.db.backends.mysql',
-						'NAME':'devops1',
+						'NAME':'dns',
 						'USER': 'root',
 						'PASSWORD': '123456',
-						'HOST': '127.0.0.1',
+						'HOST': 'localhost',
 						'PORT':'3306',
 					}
 				}
 				
-        3.)表结构刷到数据库
+        3.) 表结构刷到数据库
 
 				 python  manage.py makemigrations
 				 
@@ -157,20 +161,20 @@
 				 
 ![image](https://github.com/1032231418/PYVM/blob/master/bind-web-images/migrate.png)				 			 
 				 
-        4.)创建管理用户
+        4.) 创建管理用户
 		
-				 (env) [root@pyvm devops]# python manage.py  createsuperuser  
+				 python manage.py  createsuperuser  
 				 
 ![image](https://github.com/1032231418/PYVM/blob/master/bind-web-images/createuser.png)				 
 				 
 
-        5.)运行项目
+        5.) 运行项目
 		
-				 (env) [root@pyvm devops]# python manage.py  runserver 0.0.0.0:8001
+				 python manage.py  runserver 0.0.0.0:80
 
 
 
-http://ip/8001  访问WEB 界面 登录账户就是创建的管理用户
+http://ip:80  访问WEB 界面 登录账户就是创建的管理用户
 
 
 ![image](https://github.com/1032231418/PYVM/blob/master/bind-web-images/login.png)	
