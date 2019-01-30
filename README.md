@@ -22,12 +22,13 @@
 	 tar -zxvf  bind-9.9.5.tar.gz           #解压压缩包
 	 cd bind-9.9.5
 	 ./configure --prefix=/usr/local/bind/  \
-	 --enable-threads=no \
+	 --enable-threads \
 	 --enable-newstats   \
 	 --with-dlz-mysql    \
 	 --disable-openssl-version-check
 	 
      #官网说明强调编译关闭多线程，即--enable-threads=no
+     #我这里是开启多线程,提高性能 --enable-threads
 	 
      	  make
 	  make install           #源码编译安装完成
