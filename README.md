@@ -22,7 +22,7 @@
 	 tar -zxvf  bind-9.9.5.tar.gz           #解压压缩包
 	 cd bind-9.9.5
 	 ./configure --prefix=/usr/local/bind/  \
-	 --enable-threads=no \
+	 --enable-threads \
 	 --enable-newstats   \
 	 --with-dlz-mysql    \
 	 --disable-openssl-version-check
