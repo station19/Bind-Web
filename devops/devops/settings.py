@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'devops.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'devops2',
+        'NAME':'dns',
         'USER': 'root',
         'PASSWORD': '123456',
-        'HOST': '192.168.8.114',
+        'HOST': 'localhost',
         'PORT':'3306',
         'OPTIONS': {
              'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
